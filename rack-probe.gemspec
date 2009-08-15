@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["ecin"]
-  s.date = %q{2009-08-14}
+  s.date = %q{2009-08-15}
   s.description = %q{Rack::Probe provides a set of probes for Rack that fire with each request.}
   s.email = %q{ecin@copypastel.com}
   s.extra_rdoc_files = [
@@ -24,6 +24,10 @@ Gem::Specification.new do |s|
      "Rakefile",
      "VERSION",
      "lib/rack-probe.rb",
+     "lib/rack/probe.rb",
+     "rack-probe-0.0.0.gem",
+     "rack-probe.gemspec",
+     "spec/rack/probe_spec.rb",
      "spec/spec_helper.rb"
   ]
   s.homepage = %q{http://github.com/ecin/rack-probe}
