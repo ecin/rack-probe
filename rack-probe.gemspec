@@ -25,7 +25,6 @@ Gem::Specification.new do |s|
      "VERSION",
      "lib/rack-probe.rb",
      "lib/rack/probe.rb",
-     "rack-probe-0.0.0.gem",
      "rack-probe.gemspec",
      "spec/rack/probe_spec.rb",
      "spec/spec_helper.rb"
