@@ -21,6 +21,7 @@ installing
 ----------
 
 `gem sources -a http://gems.github.com`
+
 `gem install ecin-rack-probe`
 
 setup
@@ -31,6 +32,7 @@ Rails Middleware:
 _Inside your config/environment.rb_
 
 `config.gem "ecin-rack-probe", :lib => "rack/probe"`
+
 `config.middleware.use "Rack::Probe"`
 
 Rack Middleware:

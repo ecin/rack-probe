@@ -5,22 +5,22 @@
 
 Gem::Specification.new do |s|
   s.name = %q{rack-probe}
-  s.version = "0.0.1"
+  s.version = "0.0.2"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["ecin"]
-  s.date = %q{2009-08-15}
+  s.date = %q{2009-08-18}
   s.description = %q{Rack::Probe provides a set of probes for Rack that fire with each request.}
   s.email = %q{ecin@copypastel.com}
   s.extra_rdoc_files = [
     "LICENSE",
-     "README.rdoc"
+     "README.markdown"
   ]
   s.files = [
     ".document",
      ".gitignore",
      "LICENSE",
-     "README.rdoc",
+     "README.markdown",
      "Rakefile",
      "VERSION",
      "lib/rack-probe.rb",
