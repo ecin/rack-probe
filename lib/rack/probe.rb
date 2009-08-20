@@ -24,6 +24,9 @@ module Rack
           p.probe :path,  :string     # Path visited 
           p.probe :referer, :string   # Referer
           p.probe :xhr                # AJAX request
+          
+          p.probe :request_start      # Start of a request
+          p.probe :request_finish     # End of a request
         end
         
         # Provider shortcut
@@ -33,6 +36,7 @@ module Rack
     end
 
     def call( env )
+      @R.request_start(&:fire)
       request = Rack::Request.new env
       @R.get(&:fire) if request.get?
       @R.post(&:fire) if request.post?
@@ -42,7 +46,9 @@ module Rack
       @R.path    { |p| p.fire(request.path) }
       @R.ip      { |p| p.fire(request.ip) }
       @R.referer { |p| p.fire(request.referer) }
-      @app.call env
+      response = @app.call(env)
+      @R.request_finish(&:fire)
+      response
     end
 
   end
