@@ -24,11 +24,13 @@ describe Rack::Probe do
   end
 
   before :each do
+    @q = Proc.new {'hello'}
     @compiler = Dtrace.new
     @compiler.setopt('bufsize', '8m')
   end
 
   it 'should fire a probe with a request\'s ip' do
+    Rack::Probe.new @q
     consumer = compile_script ":::ip {trace(copyinstr((int) arg0));}"
     get '/'
     consumer.consume_once do |d|
@@ -106,6 +108,26 @@ describe Rack::Probe do
     get '/', {}, { "HTTP_X_REQUESTED_WITH" => "XMLHttpRequest" }
     consumer.consume_once do |d|
       d.probe.name.should eql('xhr')
+      consumer.finish
+    end
+    consumer.finished?.should be_true
+  end
+  
+  it 'should fire a probe when a request is started' do
+    consumer = compile_script ":::request_start {}"
+    get '/'
+    consumer.consume_once do |d|
+      d.probe.name.should eql('request_start')
+      consumer.finish
+    end
+    consumer.finished?.should be_true
+  end
+  
+  it 'should fire a probe when a request finishes' do
+    consumer = compile_script ":::request_finish {}"
+    get '/'
+    consumer.consume_once do |d|
+      d.probe.name.should eql('request_finish')
       consumer.finish
     end
     consumer.finished?.should be_true
