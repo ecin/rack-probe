@@ -28,10 +28,10 @@ module Rack
           p.probe :request_start      # Start of a request
           p.probe :request_finish     # End of a request
         end
-        
-        # Provider shortcut
-        @R = Dtrace::Probe::Rack
       end
+    
+      # Provider shortcut
+      @R = Dtrace::Probe::Rack
       @app = app
     end
 
